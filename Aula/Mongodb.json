@@ -1,0 +1,45 @@
+db.funcionario.find({})
+
+db.funcionario.find({},{"_id": 0})
+
+db.funci+onario.find({}, {"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_Nome": 1})
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_Nome": 1})
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_Nome": 1, "Dependente.Nome_Dependente": 1})
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_nome": 1, "Nome_Meio": 1, "Ultimo_nome": 1}).limit(5)
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_nome": 1}).sort({"Primeiro_Nome": 1})
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_nome": 1}).sort({"Primeiro_Nome": -1})
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_nome": 1}).sort({"Primeiro_Nome": -1}).limit(3)
+
+db.funcionario.find({}, {"Sexo": "M","_id": 0,"Primeiro_Nome": 1, "Nome_Meio": 1, "Ultimo_nome": 1}).sort({"Primeiro_Nome": -1}).limit(3)
+
+db.funcionario.find({}, {"_id": 0,"Primeiro_Nome": 1, "Salario": 1})
+
+db.funcionario.find({"Salario": 31000}, {"_id": 0,"Primeiro_Nome": 1, "Salario": 1})
+
+/*$gt = maior que
+  $gte = maior ou igual que
+  $lt = menor que
+  $lte = menor ou igual que
+*/
+
+db.funcionario.find({"Salario": {$gte: 31000}},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1})
+
+db.funcionario.find({"Salario": {$gte: 31000}},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Data_Nascimento": 1})
+
+db.funcionario.find({"Data_Nascimento": {$gte: new Date("1990-01-01")}},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Data_Nascimento": 1})
+
+db.funcionario.find({"Primeiro_Nome": {$in: ["Fatima","Tonico"] }},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Data_Nascimento": 1})
+
+db.funcionario.find({"Numero_Departamento": "5", "Sexo": "M"},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Numero_Departamento": 1, "Sexo": 1})
+
+db.funcionario.find({$and: [{"Numero_Departamento": "5"}, {"Sexo": "M"}]},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Numero_Departamento": 1, "Sexo": 1})
+
+db.funcionario.find({$or: [{"Numero_Departamento": "5"}, {"Sexo": "M"}]},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Numero_Departamento": 1, "Sexo": 1})
+
+db.funcionario.find({$and: [{"Salario": {$gt:30000}}, {"Sexo": "M"}]},{"_id": 0,"Primeiro_Nome": 1, "Salario": 1, "Numero_Departamento": 1, "Sexo": 1})
